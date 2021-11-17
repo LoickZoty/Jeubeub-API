@@ -1,0 +1,36 @@
+package com.example.demo.data;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.game.Game;
+import com.example.demo.game.Morpion;
+
+@Repository
+public class GameData implements GameDataInterface {
+	public static HashMap<Integer, Game> games = new HashMap<Integer, Game>();
+	
+	static {
+		games.put(0, new Morpion(new ArrayList<Integer>(Arrays.asList(1, 2))));
+	}
+	
+	@Override
+	public void push(Game game) {
+		games.put(Game.nextId, game);
+	}
+
+	@Override
+	public void remove(int id) {
+		games.remove(id);
+	}
+
+	@Override
+	public Game getGame(int id) {
+		if (games.containsKey(id))
+			return games.get(id);
+		return null;
+	}
+}
