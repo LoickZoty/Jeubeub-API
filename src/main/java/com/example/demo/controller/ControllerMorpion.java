@@ -17,34 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.data.GameData;
 import com.example.demo.game.Game;
 import com.example.demo.game.Morpion;
-import com.example.demo.queue.Queue;
 
 @RestController
 @RequestMapping(value="/Jeubeub/api/v1/game/morpion")
-public class ControllerMorpion {
-	public ArrayList<Queue> morpionQueue = new ArrayList<Queue>();
-	
-    @Autowired
-    private GameData gameData;
-    
+public class ControllerMorpion extends ControllerAbstractGame {
+	public ControllerMorpion(GameData gameData) {
+		super(gameData);
+	}
+	    
 	@GetMapping("/waitQueue") //Chercher une solution pour ajouter n'importe quel jeu
-    public @ResponseBody Morpion waitQueue(@RequestParam("playerId") int playerId) throws InterruptedException {
-		if (morpionQueue.size() == 0) {
-			morpionQueue.add(new Queue(2,2));
-		}
-		Queue queue = morpionQueue.get(0);
-		queue.add(playerId);
-		queue.waitQueue();
-		
-		if (queue.game == null) {
-			Morpion morpion = new Morpion(queue.players);
-			queue.game = morpion;
-			gameData.push(morpion);
-		}
-		Morpion morpion = (Morpion)queue.game;
-		queue.playersSync.setPlayersSync(playerId, true);
-		if (queue.playersSync.isAllSynchronize()) morpionQueue.remove(queue);
-		return morpion;
+    public @ResponseBody Game waitQueue(@RequestParam("playerId") int playerId) throws InterruptedException {
+		return super.getNewGame(gameQueue.get(Morpion.class), playerId, 2, 2);
     }   
 	
 	@GetMapping("{id}/dropMarker")

@@ -28,7 +28,7 @@ public class Morpion extends Game {
 					this.nextPlayer();
 					this.synchronizePlayers.initializePlayersSync(players);
 					this.finishGame();
-					return new ResponseEntity<>("Success", HttpStatus.OK);
+					return new ResponseEntity<>("{\"message\" = \"Success\"}", HttpStatus.OK);
 				}
 				return new ResponseEntity<>("Position already marked", HttpStatus.UNAUTHORIZED);
 			}
@@ -69,18 +69,18 @@ public class Morpion extends Game {
 	@Override
 	public void finishGame() {
 		if (!this.isFinishGame()) {
-			if ((map.get(0).get(0) != E) && 
-				(map.get(0).get(0) == map.get(0).get(1) && map.get(0).get(1) == map.get(0).get(2)) ||
+			if  ((map.get(0).get(0) != E) && 
+				((map.get(0).get(0) == map.get(0).get(1) && map.get(0).get(1) == map.get(0).get(2)) ||
 				(map.get(0).get(0) == map.get(1).get(0) && map.get(1).get(0) == map.get(2).get(0)) ||
-				(map.get(0).get(0) == map.get(1).get(1) && map.get(1).get(1) == map.get(2).get(2)))
+				(map.get(0).get(0) == map.get(1).get(1) && map.get(1).get(1) == map.get(2).get(2))))
 				initializeRanking(map.get(0).get(0));
 			
-			else if ((map.get(0).get(1) != E) && (map.get(0).get(1) == map.get(1).get(1) && map.get(1).get(1) == map.get(2).get(1)))
+			else if ((map.get(0).get(1) != E) && (map.get(0).get(1) == map.get(1).get(1) && map.get(1).get(1) == map.get(2).get(1))) 
 				initializeRanking(map.get(0).get(1));
 			
 			else if ((map.get(0).get(2) != E) &&
-				(map.get(0).get(2) == map.get(1).get(1) && map.get(1).get(1) == map.get(2).get(0)) ||
-				(map.get(0).get(2) == map.get(1).get(2) && map.get(1).get(2) == map.get(2).get(2)))
+				((map.get(0).get(2) == map.get(1).get(1) && map.get(1).get(1) == map.get(2).get(0)) ||
+				(map.get(0).get(2) == map.get(1).get(2) && map.get(1).get(2) == map.get(2).get(2))))
 				initializeRanking(map.get(0).get(2));
 			
 			else if ((map.get(1).get(0) != E) && (map.get(1).get(0) == map.get(1).get(1) && map.get(1).get(1) == map.get(1).get(2)))
