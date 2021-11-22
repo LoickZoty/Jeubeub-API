@@ -35,16 +35,15 @@ public abstract class ControllerAbstractGame {
     	Queue queue = queues.get(0);
 		queue.add(playerId);
 		queue.waitQueue();
-		if (queue.game == null) {
-			Morpion morpion = new Morpion(queue.players);
-			queue.game = morpion;
-			gameData.push(morpion);
+		if (queue.players.get(0) == playerId) {
+			queue.game = new Morpion(queue.players);
+			gameData.push(queue.game);
 		}
-		
-		Morpion morpion = (Morpion)queue.game;
+		queue.waitInstanceGame();
+		System.out.println(queue.game.getId());
 		queue.playersSync.setPlayersSync(playerId, true);
 		if (queue.playersSync.isAllSynchronize()) removeQueue(queues, queue);
-		return morpion;
+		return queue.game;
     } 
     
     public void removeQueue(ArrayList<Queue> queues, Queue queue) {

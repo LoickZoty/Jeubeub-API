@@ -27,6 +27,12 @@ public class Queue {
 		}
 	}
 	
+	public void waitInstanceGame() throws InterruptedException {
+		while(game == null) {
+			Thread.sleep(1000);
+		}
+	}
+	
 	public boolean isStartable() {
 		return players.size() >= minPlayers && players.size() <= maxPlayers;
 	}

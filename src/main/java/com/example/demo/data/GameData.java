@@ -14,12 +14,12 @@ public class GameData implements GameDataInterface {
 	public static HashMap<Integer, Game> games = new HashMap<Integer, Game>();
 	
 	static {
-		games.put(0, new Morpion(new ArrayList<Integer>(Arrays.asList(1, 2))));
+		games.put(0, new Morpion(new ArrayList<Integer>(Arrays.asList(10, 11))));
 	}
 	
 	@Override
 	public void push(Game game) {
-		games.put(Game.nextId, game);
+		games.put(game.getId(), game);
 	}
 
 	@Override

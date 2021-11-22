@@ -47,6 +47,7 @@ public class ControllerGame {
 	
 	@GetMapping("/{id}/waitRefreshment")
 	public ResponseEntity<Object> waitRefreshment(@PathVariable int id, @RequestParam("playerId") int playerId) throws InterruptedException {
+		System.out.println(gameData.games);
 		Game game = gameData.getGame(id);
 		if (game != null) {
 			if (game.isFinishGame() && game.sync().isAllSynchronize()) gameData.remove(id);
