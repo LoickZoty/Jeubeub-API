@@ -28,9 +28,9 @@ public abstract class ControllerAbstractGame {
 		this.initializeGameQueue();
 	}
 		
-	public abstract @ResponseBody Game waitQueue(@RequestParam("playerId") int playerId) throws InterruptedException;
+	public abstract @ResponseBody Game waitQueue(@RequestParam("playerId") String playerId) throws InterruptedException;
 	
-    public Game getNewGame(ArrayList<Queue> queues, int playerId, int minQueue, int maxQueue) throws InterruptedException {
+    public Game getNewGame(ArrayList<Queue> queues, String playerId, int minQueue, int maxQueue) throws InterruptedException {
 		if (queues.size() == 0) queues.add(new Queue(minQueue,maxQueue));
     	Queue queue = queues.get(0);
 		queue.add(playerId);

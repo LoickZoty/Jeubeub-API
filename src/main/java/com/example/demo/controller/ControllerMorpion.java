@@ -26,12 +26,12 @@ public class ControllerMorpion extends ControllerAbstractGame {
 	}
 	    
 	@GetMapping("/waitQueue") //Chercher une solution pour ajouter n'importe quel jeu
-    public @ResponseBody Game waitQueue(@RequestParam("playerId") int playerId) throws InterruptedException {
+    public @ResponseBody Game waitQueue(@RequestParam("playerId") String playerId) throws InterruptedException {
 		return super.getNewGame(gameQueue.get(Morpion.class), playerId, 2, 2);
     }   
 	
 	@GetMapping("{id}/dropMarker")
-    public @ResponseBody ResponseEntity<Object> dropMarker(@PathVariable int id, @RequestParam("playerId") int playerId, @RequestParam("x") int x, @RequestParam("y") int y) {
+    public @ResponseBody ResponseEntity<Object> dropMarker(@PathVariable int id, @RequestParam("playerId") String playerId, @RequestParam("x") int x, @RequestParam("y") int y) {
 		Game game = gameData.games.get(id);
 		if (game instanceof Morpion) {
 			Morpion morpion = (Morpion)game;

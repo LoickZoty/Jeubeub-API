@@ -14,7 +14,7 @@ public class GameData implements GameDataInterface {
 	public static HashMap<Integer, Game> games = new HashMap<Integer, Game>();
 	
 	static {
-		games.put(0, new Morpion(new ArrayList<Integer>(Arrays.asList(10, 11))));
+		games.put(0, new Morpion(new ArrayList<String>(Arrays.asList("10", "11"))));
 	}
 	
 	@Override

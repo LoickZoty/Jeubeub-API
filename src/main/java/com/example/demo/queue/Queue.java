@@ -7,9 +7,9 @@ import com.example.demo.game.Game;
 import com.example.demo.synchronize.SynchronizePlayers;
 
 public class Queue {
-	public static ArrayList<Integer> allPlayersWaiting = new ArrayList<Integer>();
+	public static ArrayList<String> allPlayersWaiting = new ArrayList<String>();
 	
-	public ArrayList<Integer> players = new ArrayList<Integer>();
+	public ArrayList<String> players = new ArrayList<String>();
 	public SynchronizePlayers playersSync = new SynchronizePlayers();
 	public int minPlayers;
 	public int maxPlayers;
@@ -37,7 +37,7 @@ public class Queue {
 		return players.size() >= minPlayers && players.size() <= maxPlayers;
 	}
 	
-	public void add(int playerId) {
+	public void add(String playerId) {
 		if (!allPlayersWaiting.contains(playerId)) {
 			allPlayersWaiting.add(playerId);
 	 		players.add(playerId);

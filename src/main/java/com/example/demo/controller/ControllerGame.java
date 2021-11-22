@@ -34,7 +34,7 @@ public class ControllerGame {
 	}
 	
 	@GetMapping("/{id}/waitTurn")
-	public ResponseEntity<Object> waitTurn(@PathVariable int id, @RequestParam("playerId") int playerId) throws InterruptedException {
+	public ResponseEntity<Object> waitTurn(@PathVariable int id, @RequestParam("playerId") String playerId) throws InterruptedException {
 		Game game = gameData.getGame(id);
 		if (game != null) {
 			while(!game.isMyTurn(playerId)) {
@@ -46,7 +46,7 @@ public class ControllerGame {
 	}
 	
 	@GetMapping("/{id}/waitRefreshment")
-	public ResponseEntity<Object> waitRefreshment(@PathVariable int id, @RequestParam("playerId") int playerId) throws InterruptedException {
+	public ResponseEntity<Object> waitRefreshment(@PathVariable int id, @RequestParam("playerId") String playerId) throws InterruptedException {
 		System.out.println(gameData.games);
 		Game game = gameData.getGame(id);
 		if (game != null) {
