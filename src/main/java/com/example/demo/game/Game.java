@@ -61,7 +61,7 @@ public abstract class Game {
 	}
 		
 	public boolean isMyTurn(String playerId) {
-		return this.getActualPlayer() == playerId;
+		return this.getActualPlayer().equals(playerId);
 	}
 	
 	public SynchronizePlayers sync() {

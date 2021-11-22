@@ -39,7 +39,7 @@ public class Morpion extends Game {
 	}
 	
 	public int getMarkerByPlayer(String playerId) {
-		if (this.players.get(0) == playerId) return X;
+		if (this.players.get(0).equals(playerId)) return X;
 		else return O;
 	}
 
@@ -52,7 +52,7 @@ public class Morpion extends Game {
 	
 	private void initializeMap() {
 		map = new ArrayList<ArrayList<Integer>>();
-		map.add(new ArrayList<Integer>(Arrays.asList(E, X, X)));
+		map.add(new ArrayList<Integer>(Arrays.asList(E, E, E)));
 		map.add(new ArrayList<Integer>(Arrays.asList(E, E, E)));
 		map.add(new ArrayList<Integer>(Arrays.asList(E, E, E)));
 	}
