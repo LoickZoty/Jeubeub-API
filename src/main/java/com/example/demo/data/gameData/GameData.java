@@ -1,4 +1,4 @@
-package com.example.demo.data;
+package com.example.demo.data.gameData;
 
 import java.util.ArrayList;
 import java.util.Arrays;

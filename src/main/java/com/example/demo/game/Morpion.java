@@ -29,7 +29,7 @@ public class Morpion extends Game {
 					this.nextPlayer();
 					this.synchronizePlayers.initializePlayersSync(players);
 					this.finishGame();
-					return new ResponseEntity<>("{\"message\" = \"Success\"}", HttpStatus.OK);
+					return new ResponseEntity<>("{\"message\" = \"success\"}", HttpStatus.OK);
 				}
 				return new ResponseEntity<>("Position already marked", HttpStatus.UNAUTHORIZED);
 			}

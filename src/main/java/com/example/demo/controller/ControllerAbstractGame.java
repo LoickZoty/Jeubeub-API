@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.data.GameData;
+import com.example.demo.data.gameData.GameData;
 import com.example.demo.game.Game;
 import com.example.demo.game.Morpion;
 import com.example.demo.queue.Queue;

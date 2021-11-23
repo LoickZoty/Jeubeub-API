@@ -2,7 +2,7 @@ package com.example.demo.queue;
 
 import java.util.ArrayList;
 
-import com.example.demo.data.GameData;
+import com.example.demo.data.gameData.GameData;
 import com.example.demo.game.Game;
 import com.example.demo.synchronize.SynchronizePlayers;
 
