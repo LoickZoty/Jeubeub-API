@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 25 nov. 2021 à 17:50
+-- Généré le : jeu. 25 nov. 2021 à 18:36
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `shop_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `quantity` int(11) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
@@ -39,10 +40,10 @@ CREATE TABLE IF NOT EXISTS `shop_items` (
 -- Déchargement des données de la table `shop_items`
 --
 
-INSERT INTO `shop_items` (`id`, `name`, `quantity`) VALUES
-(1, 'or', 100),
-(2, 'gemme', 50),
-(5, 'or', 500);
+INSERT INTO `shop_items` (`id`, `name`, `quantity`, `price`) VALUES
+(1, 'or', 100, '200'),
+(2, 'gemme', 50, '400'),
+(5, 'or', 500, '800');
 
 -- --------------------------------------------------------
 
