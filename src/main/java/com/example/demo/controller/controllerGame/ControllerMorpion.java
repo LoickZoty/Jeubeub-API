@@ -1,10 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo.controller.controllerGame;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.data.gameData.GameData;
 import com.example.demo.game.Game;
 import com.example.demo.game.Morpion;
+import com.example.demo.queue.Queue;
 
 @RestController
 @RequestMapping(value="/Jeubeub/api/v1/game/morpion")
@@ -24,12 +22,17 @@ public class ControllerMorpion extends ControllerAbstractGame {
 	public ControllerMorpion(GameData gameData) {
 		super(gameData);
 	}
-	    
-	@GetMapping("/waitQueue") //Chercher une solution pour ajouter n'importe quel jeu
-    public @ResponseBody Game waitQueue(@RequestParam("playerId") String playerId) throws InterruptedException {
-		return super.getNewGame(gameQueue.get(Morpion.class), playerId, 2, 2);
-    }   
 	
+	@Override
+	public Game getGame(ArrayList<String> players) {
+		return new Morpion(players);
+	}
+	
+	@Override
+	public Queue getQueue(boolean publicQueue) {
+		return new Queue(2, 2, publicQueue);
+	}
+	  		
 	@GetMapping("{id}/dropMarker")
     public @ResponseBody ResponseEntity<Object> dropMarker(@PathVariable int id, @RequestParam("playerId") String playerId, @RequestParam("x") int x, @RequestParam("y") int y) {
 		Game game = gameData.games.get(id);

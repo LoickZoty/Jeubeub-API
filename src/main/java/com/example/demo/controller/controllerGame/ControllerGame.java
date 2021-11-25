@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.controllerGame;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class ControllerGame {
 	protected GameData gameData;
     
 	public ControllerGame(GameData gameData) {
-		this.gameData = gameData;
+		this.gameData = gameData;		
 	}
 		
 	@GetMapping("/remove/{id}")

@@ -35,4 +35,11 @@ public class ControllerShop {
 		map.put("data", shopData.displayItemsPlayer(playerId));
 		return map;
 	}
+	
+	@GetMapping("/displayItems")
+	public Map<String, Object> displayItems() throws SQLException {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("data", shopData.displayItems());
+		return map;
+	}
 }
