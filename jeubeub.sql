@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 23 nov. 2021 à 18:07
+-- Généré le : jeu. 25 nov. 2021 à 17:50
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -31,16 +31,18 @@ DROP TABLE IF EXISTS `shop_items`;
 CREATE TABLE IF NOT EXISTS `shop_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
+  `quantity` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `shop_items`
 --
 
-INSERT INTO `shop_items` (`id`, `name`) VALUES
-(1, 'or'),
-(4, 'gemme');
+INSERT INTO `shop_items` (`id`, `name`, `quantity`) VALUES
+(1, 'or', 100),
+(2, 'gemme', 50),
+(5, 'or', 500);
 
 -- --------------------------------------------------------
 
@@ -58,18 +60,6 @@ CREATE TABLE IF NOT EXISTS `user_items` (
   KEY `item_id` (`item_id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `user_items`
---
-
-INSERT INTO `user_items` (`id`, `quantity`, `item_id`, `user_id`) VALUES
-(1, 1500, 1, '104930518833008752368'),
-(2, 60, 4, '104930518833008752368'),
-(4, 700, 4, '17'),
-(5, 40, 4, '6'),
-(6, 525, 4, '3'),
-(7, 4906, 4, '10');
 
 --
 -- Contraintes pour les tables déchargées
