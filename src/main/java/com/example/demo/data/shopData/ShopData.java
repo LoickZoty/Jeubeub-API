@@ -2,6 +2,7 @@ package com.example.demo.data.shopData;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -30,14 +31,28 @@ public class ShopData implements ShopDataInterface {
 
 	@Override
 	public boolean pushItemPlayer(String playerId, int itemId, int itemQuantity) throws SQLException {
-		Statement state = con.createStatement();
-		ResultSet rs = state.executeQuery("SELECT count(*) AS rowcount FROM user_items WHERE user_items.item_id = "+itemId+" and user_items.user_id = "+playerId);
+		String query = ("SELECT count(*) AS rowcount FROM user_items WHERE user_items.item_id = ? and user_items.user_id = ?");
+		PreparedStatement preparedStatement = con.prepareStatement(query);
+		preparedStatement.setInt(1, itemId);
+		preparedStatement.setString(2, playerId);
+		
+		ResultSet rs = preparedStatement.executeQuery();
 		if (rs.next()) {
 			if (rs.getInt("rowcount") == 0) {
-				return state.execute("INSERT INTO user_items (quantity, item_id, user_id) VALUES ("+itemQuantity+","+itemId+","+playerId+")");
+				query = "INSERT INTO user_items (quantity, item_id, user_id) VALUES (?,?,?)";
+				preparedStatement = con.prepareStatement(query);
+				preparedStatement.setInt(1, itemQuantity);
+				preparedStatement.setInt(2, itemId);
+				preparedStatement.setString(3, playerId);
+				if (preparedStatement.executeUpdate() == 1) return true;
 				
 			} else {
-				return state.execute("UPDATE user_items set quantity = quantity + "+itemQuantity+" where user_items.user_id = "+playerId+ " and user_items.item_id = "+itemId);
+				query = "UPDATE user_items set quantity = quantity + ? where user_items.user_id = ? and user_items.item_id = ?";
+				preparedStatement = con.prepareStatement(query);
+				preparedStatement.setInt(1, itemQuantity);
+				preparedStatement.setString(2, playerId);
+				preparedStatement.setInt(3, itemId);
+				if (preparedStatement.executeUpdate() == 1) return true;
 			}
 		}
 		return false;
@@ -45,9 +60,11 @@ public class ShopData implements ShopDataInterface {
 	
 	@Override
 	public ArrayList<Map<String, Object>> displayItemsPlayer(String playerId) throws SQLException {
-		Statement state = con.createStatement();
+		String query = "SELECT shop_items.name, user_items.quantity FROM user_items JOIN shop_items ON shop_items.id = user_items.item_id WHERE user_id = ?";
+		PreparedStatement preparedStatement = con.prepareStatement(query);
+		preparedStatement.setString(1, playerId);
 		
-		ResultSet rs = state.executeQuery("SELECT shop_items.name, user_items.quantity FROM user_items JOIN shop_items ON shop_items.id = user_items.item_id WHERE user_id = "+playerId);
+		ResultSet rs = preparedStatement.executeQuery();
 		ResultSetMetaData rsmd = rs.getMetaData();
 		
 		ArrayList<Map<String, Object>> objects = new ArrayList<Map<String, Object>>();
